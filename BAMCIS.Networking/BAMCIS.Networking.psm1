@@ -557,6 +557,44 @@ Function Get-NetAdapterErrorCode {
 	}
 }
 
+Function Get-IPv6ConfigurationOptions {
+	<#
+		.SYNOPSIS
+			Writes the HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters DisabledComponents key property possible options.
+
+		.DESCRIPTION
+			The Get-IPv6ConfigurationOptions cmdlet writes the HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters DisabledComponents key property possible options. This registry key entry determines which components of IPv6 are enabled or disabled.
+
+			The cmdlet writes the possible values to enter in this key entry.
+
+		.EXAMPLE
+			Get-IPv6ConfigurationOptions
+
+			This command returns the possible registry key settings as an array of PSCustomObjects.
+
+		.INPUTS
+			None
+
+		.OUTPUTS
+			System.Management.Automation.PSCustomObject[]
+		
+		.NOTES
+			AUTHOR: Michael Haken	
+			LAST UPDATE: 2/28/2016
+	#>
+	[CmdletBinding()]
+	[OutputType([System.Management.Automation.PSCustomObject[]])]
+	Param()
+
+	Begin {}
+
+	Process {
+		Write-Output -InputObject $script:IPv6Configs
+	}
+
+	End {}
+}
+
 $script:IPv6Configs = @(
 	[PSCustomObject]@{Name="IPv6 Disabled On All Interfaces";Value="0xFFFFFFFF"},
 	[PSCustomObject]@{Name="IPv6 Enabled only on tunnel interfaces";Value="0xFFFFFFFE"}, 
